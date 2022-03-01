@@ -1,18 +1,21 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
-import SortedUp from "./screens/sortedUp";
-import SortedOldest from "./screens/oldest";
-import Home from "./screens/home";
+
+// Screens
+import Home from "./screens/home/home";
+import SortedOldest from "./screens/tables/oldest";
+import SortedUp from "./screens/tables/sortedUp";
+import NotFound from "./screens/notFound/notFound";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="" element={<Home />} />
-        <Route path="sorted/up" element={<SortedUp />} />
-        <Route path="sorted/oldest" element={<SortedOldest />} />
+        <Route path="table/up" element={<SortedUp />} />
+        <Route path="table/oldest" element={<SortedOldest />} />
       </Routes>
     </div>
   );

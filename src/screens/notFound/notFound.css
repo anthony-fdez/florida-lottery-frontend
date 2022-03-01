@@ -1,0 +1,17 @@
+.not-found-container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  color: white;
+}
+.not-found-gif {
+  width: 100%;
+}
+.not-found-button {
+  width: 80%;
+}
