@@ -2,7 +2,15 @@ td,
 th {
   text-align: left;
 }
-
+.table-container {
+  overflow: auto;
+  min-height: 100vh;
+}
 tr:nth-child(even) {
   background-color: #e7e7e7;
+}
+.table-pagination-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

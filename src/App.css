@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   padding: 30px;
+  scroll-behavior: smooth;
 }
 * {
   padding: 0;
