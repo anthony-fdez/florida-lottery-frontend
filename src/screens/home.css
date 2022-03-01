@@ -1,0 +1,15 @@
+.home-button-container {
+  max-width: 500px;
+  text-align: left;
+  margin: auto;
+  margin-top: 15px;
+}
+.home-button {
+  width: 100%;
+  padding: 10px;
+}
+.home-container {
+  max-width: 500px;
+  margin: auto;
+  text-align: left;
+}
