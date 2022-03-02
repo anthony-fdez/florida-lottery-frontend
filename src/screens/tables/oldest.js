@@ -108,7 +108,17 @@ const SortedOldest = () => {
               {data.table.map((row, index) => {
                 return (
                   <tr key={index}>
-                    <td>{row.number}</td>
+                    <td>
+                      <span
+                        onClick={() => {
+                          setIsModalShown(true);
+                          setModalNumber(row.number);
+                        }}
+                        className="link"
+                      >
+                        {row.number}
+                      </span>
+                    </td>
                     <td>{row.repeated}</td>
                     <td>
                       {row.dates.map((date, index) => {

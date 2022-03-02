@@ -50,6 +50,9 @@ h5 p {
 .App-link:hover {
   opacity: 0.5;
 }
+a {
+  color: #61dafb;
+}
 
 @keyframes App-logo-spin {
   from {

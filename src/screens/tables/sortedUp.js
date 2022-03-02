@@ -55,7 +55,7 @@ const SortedUp = () => {
     setLoadedAll(true);
 
     axios
-      .post(`http://localhost:9000/history`, {
+      .post(`http://localhost:9000/sorted/up`, {
         start: currentPageIndex,
         end: currentPageIndex + 25000,
       })
@@ -107,13 +107,29 @@ const SortedUp = () => {
             <tbody>
               {data.table.map((row, index) => {
                 return (
-                  <tr key={index}>
-                    <td>{row.number}</td>
+                  <tr key={`${index}sortedup`}>
+                    <td>
+                      <span
+                        onClick={() => {
+                          setIsModalShown(true);
+                          setModalNumber(row.number);
+                        }}
+                        className="link"
+                      >
+                        {row.number}
+                      </span>
+                    </td>
+
                     <td>{row.repeated}</td>
                     <td>
-                      {row.dates.map((date) => {
+                      {row.dates.map((date, index) => {
                         return (
-                          <span style={{ marginRight: "10px" }}>{date},</span>
+                          <span
+                            key={`${index}sortedup-date`}
+                            style={{ marginRight: "10px" }}
+                          >
+                            {date},
+                          </span>
                         );
                       })}
                     </td>

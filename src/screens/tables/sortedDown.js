@@ -107,13 +107,28 @@ const SortedDown = () => {
             <tbody>
               {data.table.map((row, index) => {
                 return (
-                  <tr key={index}>
-                    <td>{row.number}</td>
+                  <tr key={`${index}sorteddown`}>
+                    <td>
+                      <span
+                        onClick={() => {
+                          setIsModalShown(true);
+                          setModalNumber(row.number);
+                        }}
+                        className="link"
+                      >
+                        {row.number}
+                      </span>
+                    </td>
                     <td>{row.repeated}</td>
                     <td>
-                      {row.dates.map((date) => {
+                      {row.dates.map((date, index) => {
                         return (
-                          <span style={{ marginRight: "10px" }}>{date},</span>
+                          <span
+                            key={`${index}sorteddown-date`}
+                            style={{ marginRight: "10px" }}
+                          >
+                            {date},
+                          </span>
                         );
                       })}
                     </td>

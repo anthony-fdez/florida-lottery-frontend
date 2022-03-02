@@ -71,6 +71,29 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+      <br></br>
+      <div className="footer-copyright-container">
+        <p>©{new Date().getFullYear()} La Bolita LLC all rights reserved...</p>
+        <p>
+          Just kidding this is an open source project and both backend and
+          frontend source code are available{" "}
+          <a
+            target="_blank"
+            href="https://github.com/anthony-fdez/florida-lottery-frontend"
+            rel="noreferrer"
+          >
+            here (frontend)
+          </a>{" "}
+          and{" "}
+          <a
+            target="_blank"
+            href="https://github.com/anthony-fdez/florida-lottery"
+            rel="noreferrer"
+          >
+            here (backend)
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
