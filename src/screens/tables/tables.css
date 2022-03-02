@@ -15,7 +15,9 @@ tr:nth-child(even) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 15px;
+  max-width: 1000px;
 }
 .full-screen-loader {
   background-color: black;
@@ -46,4 +48,13 @@ tr:nth-child(even) {
 }
 .link:hover {
   opacity: 0.7;
+}
+.table-header {
+  text-align: left;
+  max-width: 1000px;
+  margin: auto;
+}
+.table-load-all-container {
+  max-width: 1000px;
+  margin: auto;
 }

@@ -54,11 +54,11 @@ a {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.NOT-LOADED {
+  opacity: 0;
+  transition: 200ms ease-in-out;
+}
+.LOADED {
+  opacity: 1;
+  transition: 200ms ease-in-out;
 }

@@ -5,6 +5,8 @@ import "./tables.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import scrollToTop from "../../functions/scrollToTop";
 import { getNumbers } from "../../functions/getNumbers";
@@ -95,9 +97,13 @@ const History = () => {
 
     return (
       <>
-        <p>
-          Historial the todos los numberos que han salido, va hasta 04/29/88
-        </p>
+        <div className="table-header">
+          <h4>
+            Historial the todos los numberos que han salido, va hasta 04/29/88
+          </h4>
+          <hr></hr>
+        </div>
+
         <div className="table-container">
           <Table>
             <thead>
@@ -111,28 +117,58 @@ const History = () => {
               {data.table.map((row, index) => {
                 return (
                   <tr key={index}>
-                    <td>{row.date}</td>
                     <td>
-                      <span
-                        onClick={() => {
-                          setIsModalShown(true);
-                          setModalNumber(row.M);
-                        }}
-                        className="link"
+                      <OverlayTrigger
+                        placement="right"
+                        overlay={
+                          <Tooltip>
+                            Significado: {getNumbers({ number: row.M || "" })}
+                          </Tooltip>
+                        }
                       >
-                        {row.M}
-                      </span>
+                        <span>{row.date}</span>
+                      </OverlayTrigger>
+                    </td>
+
+                    <td>
+                      <OverlayTrigger
+                        placement="right"
+                        overlay={
+                          <Tooltip>
+                            Significado: {getNumbers({ number: row.M || "" })}
+                          </Tooltip>
+                        }
+                      >
+                        <span
+                          onClick={() => {
+                            setIsModalShown(true);
+                            setModalNumber(row.M);
+                          }}
+                          className="link"
+                        >
+                          {row.M}
+                        </span>
+                      </OverlayTrigger>
                     </td>
                     <td>
-                      <span
-                        onClick={() => {
-                          setIsModalShown(true);
-                          setModalNumber(row.E);
-                        }}
-                        className="link"
+                      <OverlayTrigger
+                        placement="right"
+                        overlay={
+                          <Tooltip>
+                            Significado: {getNumbers({ number: row.E || "" })}
+                          </Tooltip>
+                        }
                       >
-                        {row.E}
-                      </span>
+                        <span
+                          onClick={() => {
+                            setIsModalShown(true);
+                            setModalNumber(row.E);
+                          }}
+                          className="link"
+                        >
+                          {row.E}
+                        </span>
+                      </OverlayTrigger>
                     </td>
                   </tr>
                 );
@@ -157,7 +193,7 @@ const History = () => {
         </div>
 
         {!loadedAll ? (
-          <div>
+          <div className="table-load-all-container">
             <hr></hr>
             <br></br>
             <div style={{ maxWidth: "400px", margin: "auto" }}>

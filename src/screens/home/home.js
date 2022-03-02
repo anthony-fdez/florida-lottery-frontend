@@ -28,6 +28,18 @@ const Home = () => {
       <br></br>
       <h3>Estadisticas</h3>
       <div className="home-button-container">
+        <span>Ver historial de numeros por cada dia de la semana</span>
+        <Button
+          onClick={() => {
+            scrollToTop();
+            navigate("/table/daily");
+          }}
+          className="home-button"
+        >
+          Historial por dia
+        </Button>
+      </div>
+      <div className="home-button-container">
         <span>Ver historial de todos los mumeros</span>
         <Button
           onClick={() => {
