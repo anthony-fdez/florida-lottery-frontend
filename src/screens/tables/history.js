@@ -199,7 +199,6 @@ const History = () => {
   return (
     <div>
       {modalComponent()}
-
       {renderTable()}
       <div
         className={

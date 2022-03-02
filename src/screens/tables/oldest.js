@@ -124,38 +124,38 @@ const SortedOldest = () => {
               })}
             </tbody>
           </Table>
-          <div className="table-pagination-footer-container">
-            {!loadedAll && (
-              <>
-                <Button
-                  disabled={currentPageIndex < 20 && true}
-                  onClick={() => previousPage()}
-                >
-                  Anterior
-                </Button>
-                <span></span>
-                <Button onClick={() => nextPage()}>Siguiente</Button>
-              </>
-            )}{" "}
-          </div>
-          {!loadedAll ? (
-            <div>
-              <hr></hr>
-              <br></br>
-              <div style={{ maxWidth: "400px", margin: "auto" }}>
-                <Button style={{ width: "100%" }} onClick={() => loadAll()}>
-                  Cargar todos
-                </Button>
-                <p>
-                  Ver el hisorial completo va a consumir aproximadamente 500kb
-                  or 0.5mb
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div></div>
-          )}
         </div>
+        <div className="table-pagination-footer-container">
+          {!loadedAll && (
+            <>
+              <Button
+                disabled={currentPageIndex < 20 && true}
+                onClick={() => previousPage()}
+              >
+                Anterior
+              </Button>
+              <span></span>
+              <Button onClick={() => nextPage()}>Siguiente</Button>
+            </>
+          )}{" "}
+        </div>
+        {!loadedAll ? (
+          <div>
+            <hr></hr>
+            <br></br>
+            <div style={{ maxWidth: "400px", margin: "auto" }}>
+              <Button style={{ width: "100%" }} onClick={() => loadAll()}>
+                Cargar todos
+              </Button>
+              <p>
+                Ver el hisorial completo va a consumir aproximadamente 500kb or
+                0.5mb
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </>
     );
   };
@@ -177,7 +177,7 @@ const SortedOldest = () => {
   };
 
   return (
-    <div className="table-container">
+    <div>
       {modalComponent()}
       {renderTable()}
       <div
