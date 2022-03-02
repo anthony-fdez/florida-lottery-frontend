@@ -5,6 +5,8 @@ th {
 .table-container {
   overflow: auto;
   min-height: 100vh;
+  max-width: 1000px;
+  margin: auto;
 }
 tr:nth-child(even) {
   background-color: #e7e7e7;
@@ -13,4 +15,17 @@ tr:nth-child(even) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.full-screen-loader {
+  background-color: black;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.full-screen-loader img {
+  max-width: 400px;
 }

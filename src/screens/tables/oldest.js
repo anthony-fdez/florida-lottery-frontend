@@ -10,7 +10,6 @@ import scrollToTop from "../../functions/scrollToTop";
 const SortedOldest = () => {
   const [data, setData] = useState("loading");
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  const [maxPages, setMaxPages] = useState(null);
 
   useEffect(() => {
     getData();
@@ -21,12 +20,10 @@ const SortedOldest = () => {
     axios
       .post(`http://localhost:9000/sorted/oldest`, {
         start: currentPageIndex,
-        end: currentPageIndex + 20,
+        end: currentPageIndex + 75,
       })
       .then((response) => {
-        console.log(response);
         setData(response.data);
-        setMaxPages(response.data.length);
       })
       .catch((err) => {
         setData(null);
@@ -35,10 +32,12 @@ const SortedOldest = () => {
   };
 
   const previousPage = () => {
+    scrollToTop();
     setCurrentPageIndex((currentPageIndex) => currentPageIndex - 20);
   };
 
   const nextPage = () => {
+    scrollToTop();
     setCurrentPageIndex((currentPageIndex) => currentPageIndex + 20);
   };
 
