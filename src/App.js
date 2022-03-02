@@ -10,6 +10,7 @@ import NotFound from "./screens/notFound/notFound";
 import SortedDown from "./screens/tables/sortedDown";
 import History from "./screens/tables/history";
 import Footer from "./components/footer/footer";
+import NumberMeanings from "./screens/numberMeanings/numberMeanings";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="table/down" element={<SortedDown />} />
           <Route path="table/history" element={<History />} />
           <Route path="table/oldest" element={<SortedOldest />} />
+          <Route path="number/meanings" element={<NumberMeanings />} />
         </Routes>
       </main>
 

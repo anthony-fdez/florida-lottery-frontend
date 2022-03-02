@@ -7,6 +7,7 @@ import scrollToTop from "../../functions/scrollToTop";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import useIsLoaded from "../../functions/customHooks/useIsLoaded";
+import Today from "./today/today";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,11 +18,7 @@ const Home = () => {
       <div className="home-container">
         <h1>La Bolita </h1>
         <hr></hr>
-        <h3>Numeros de hoy</h3>
-        <span>Medio dia: </span>
-        <br></br>
-        <span>Noche: </span>
-        <br></br>
+        <Today />
         <br></br>
         <h3>Ayer</h3>
         <span>Medio dia: </span>

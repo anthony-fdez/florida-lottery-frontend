@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="footer-container">
       <div className="footer-content-container">
         <h3>La Bolita</h3>
-        <div>
+        <div className="footer-list-container">
           <ul>
             <li>
               <button
@@ -66,6 +66,19 @@ const Footer = () => {
                 className="App-link"
               >
                 Mas viejos
+              </button>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <button
+                onClick={() => {
+                  scrollToTop();
+                  navigate("/number/meanings");
+                }}
+                className="App-link"
+              >
+                Significado de los numeros
               </button>
             </li>
           </ul>

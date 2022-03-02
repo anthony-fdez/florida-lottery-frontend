@@ -16,3 +16,8 @@
   max-width: 500px;
   margin: auto;
 }
+.footer-list-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

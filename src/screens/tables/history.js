@@ -10,8 +10,8 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import scrollToTop from "../../functions/scrollToTop";
 import { getNumbers } from "../../functions/getNumbers";
-
 import useIsLoaded from "../../functions/customHooks/useIsLoaded";
+import getDateWords from "../../functions/getDateWords";
 
 const History = () => {
   const isLoded = useIsLoaded();
@@ -123,10 +123,10 @@ const History = () => {
                   <tr key={index}>
                     <td>
                       <OverlayTrigger
-                        placement="right"
+                        placement="top"
                         overlay={
                           <Tooltip>
-                            Significado: {getNumbers({ number: row.M || "" })}
+                            {getDateWords({ date: row.date || "" })}
                           </Tooltip>
                         }
                       >
@@ -136,7 +136,7 @@ const History = () => {
 
                     <td>
                       <OverlayTrigger
-                        placement="right"
+                        placement="top"
                         overlay={
                           <Tooltip>
                             Significado: {getNumbers({ number: row.M || "" })}
@@ -156,7 +156,7 @@ const History = () => {
                     </td>
                     <td>
                       <OverlayTrigger
-                        placement="right"
+                        placement="top"
                         overlay={
                           <Tooltip>
                             Significado: {getNumbers({ number: row.E || "" })}

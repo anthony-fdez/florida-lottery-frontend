@@ -5,10 +5,14 @@ import "./tables.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import scrollToTop from "../../functions/scrollToTop";
-import { getNumbers } from "../../functions/getNumbers";
 import useIsLoaded from "../../functions/customHooks/useIsLoaded";
+
+import getDateWords from "../../functions/getDateWords";
+import { getNumbers } from "../../functions/getNumbers";
 
 const SortedOldest = () => {
   const isLoaded = useIsLoaded();
@@ -97,7 +101,10 @@ const SortedOldest = () => {
 
     return (
       <>
-        <p>Organizado por numero que hace mas tiempo que no sale</p>
+        <div className="table-header">
+          <h4>Organizado por numero que hace mas tiempo que no sale</h4>
+          <hr></hr>
+        </div>
         <div className="table-container">
           <Table>
             <thead>
@@ -112,23 +119,42 @@ const SortedOldest = () => {
                 return (
                   <tr key={index}>
                     <td>
-                      <span
-                        onClick={() => {
-                          setIsModalShown(true);
-                          setModalNumber(row.number);
-                        }}
-                        className="link"
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip>
+                            Significado:{" "}
+                            {getNumbers({ number: row.number || "" })}
+                          </Tooltip>
+                        }
                       >
-                        {row.number}
-                      </span>
+                        <span
+                          onClick={() => {
+                            setIsModalShown(true);
+                            setModalNumber(row.number);
+                          }}
+                          className="link"
+                        >
+                          {row.number}
+                        </span>
+                      </OverlayTrigger>
                     </td>
                     <td>{row.repeated}</td>
                     <td>
                       {row.dates.map((date, index) => {
                         return (
-                          <span key={index} style={{ marginRight: "10px" }}>
-                            {date},
-                          </span>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={
+                              <Tooltip>
+                                {getDateWords({ date: date || "" })}
+                              </Tooltip>
+                            }
+                          >
+                            <span key={index} style={{ marginRight: "10px" }}>
+                              {date},
+                            </span>
+                          </OverlayTrigger>
                         );
                       })}
                     </td>
