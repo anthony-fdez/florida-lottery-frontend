@@ -4,8 +4,10 @@ import "./tables.css";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 import scrollToTop from "../../functions/scrollToTop";
+import { getNumbers } from "../../functions/getNumbers";
 
 const History = () => {
   const [data, setData] = useState("loading");
@@ -14,11 +16,14 @@ const History = () => {
 
   const [loadingGif, setLoadingGif] = useState(null);
 
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [modalNumber, setModalNumber] = useState(null);
+
   useEffect(() => {
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
-    const random = getRandomInt(13);
+    const random = getRandomInt(24);
 
     const loadingFile = require(`../../assets/loading/loading${random}.gif`);
 
@@ -86,7 +91,6 @@ const History = () => {
 
   const renderTable = () => {
     if (!data) return "No se pudo obtener la informacion";
-    if (data === "loading" && loadedAll) return loadingFullPageComponent();
     if (data === "loading") return "Cargando...";
 
     return (
@@ -108,8 +112,28 @@ const History = () => {
                 return (
                   <tr key={index}>
                     <td>{row.date}</td>
-                    <td>{row.M}</td>
-                    <td>{row.E}</td>
+                    <td>
+                      <span
+                        onClick={() => {
+                          setIsModalShown(true);
+                          setModalNumber(row.M);
+                        }}
+                        className="link"
+                      >
+                        {row.M}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        onClick={() => {
+                          setIsModalShown(true);
+                          setModalNumber(row.E);
+                        }}
+                        className="link"
+                      >
+                        {row.E}
+                      </span>
+                    </td>
                   </tr>
                 );
               })}
@@ -142,7 +166,38 @@ const History = () => {
     );
   };
 
-  return <div>{renderTable()}</div>;
+  const modalComponent = () => {
+    return (
+      <Modal show={isModalShown} onHide={() => setIsModalShown(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalNumber}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{getNumbers({ number: modalNumber || "" })}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setIsModalShown(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
+
+  return (
+    <div>
+      {modalComponent()}
+      {renderTable()}
+
+      <div
+        className={
+          data === "loading" && loadedAll
+            ? "loading-screen-shown"
+            : "loading-screen-hidden"
+        }
+      >
+        {loadingFullPageComponent()}
+      </div>
+    </div>
+  );
 };
 
 export default History;

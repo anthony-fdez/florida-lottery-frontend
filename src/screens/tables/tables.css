@@ -29,3 +29,20 @@ tr:nth-child(even) {
 .full-screen-loader img {
   max-width: 400px;
 }
+.loading-screen-shown {
+  transition: 200ms;
+}
+.loading-screen-hidden {
+  transition: 600ms;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.link {
+  color: rgb(71, 71, 240);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link:hover {
+  opacity: 0.7;
+}
