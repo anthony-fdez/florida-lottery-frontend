@@ -11,7 +11,11 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import scrollToTop from "../../functions/scrollToTop";
 import { getNumbers } from "../../functions/getNumbers";
 
+import useIsLoaded from "../../functions/customHooks/useIsLoaded";
+
 const History = () => {
+  const isLoded = useIsLoaded();
+
   const [data, setData] = useState("loading");
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [loadedAll, setLoadedAll] = useState(false);
@@ -233,7 +237,7 @@ const History = () => {
   };
 
   return (
-    <div>
+    <div className={isLoded ? "LOADED" : "NOT-LOADED"}>
       {modalComponent()}
       {renderTable()}
       <div

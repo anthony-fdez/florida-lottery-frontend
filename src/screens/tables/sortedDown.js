@@ -8,8 +8,11 @@ import Modal from "react-bootstrap/Modal";
 
 import scrollToTop from "../../functions/scrollToTop";
 import { getNumbers } from "../../functions/getNumbers";
+import useIsLoaded from "../../functions/customHooks/useIsLoaded";
 
 const SortedDown = () => {
+  const isLoaded = useIsLoaded();
+
   const [data, setData] = useState("loading");
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [loadedAll, setLoadedAll] = useState(false);
@@ -188,7 +191,7 @@ const SortedDown = () => {
   };
 
   return (
-    <div>
+    <div className={isLoaded ? "LOADED" : "NOT-LOADED"}>
       {modalComponent()}
       {renderTable()}
       <div
