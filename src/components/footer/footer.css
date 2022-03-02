@@ -1,0 +1,13 @@
+.footer-container {
+  width: 100vw;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  padding: 40px;
+  margin: -30px;
+  margin-top: 50px;
+  text-align: left;
+}
+.footer-content-container {
+  max-width: 500px;
+  margin: auto;
+}

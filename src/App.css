@@ -3,6 +3,9 @@
   padding: 30px;
   scroll-behavior: smooth;
 }
+main {
+  min-height: 90vh;
+}
 * {
   padding: 0;
   margin: 0;
@@ -40,6 +43,12 @@ h5 p {
 
 .App-link {
   color: #61dafb;
+  background-color: none;
+  background: none;
+  border: none;
+}
+.App-link:hover {
+  opacity: 0.5;
 }
 
 @keyframes App-logo-spin {

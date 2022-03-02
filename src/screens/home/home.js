@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router";
 import "./home.css";
 
+import scrollToTop from "../../functions/scrollToTop";
+
 // Bootstrap
 import Button from "react-bootstrap/Button";
 
@@ -10,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1>La bolita </h1>
+      <h1>La Bolita </h1>
       <hr></hr>
       <h3>Numeros de hoy</h3>
       <span>Medio dia: </span>
@@ -28,7 +30,10 @@ const Home = () => {
       <div className="home-button-container">
         <span>Ver historial de todos los mumeros</span>
         <Button
-          onClick={() => navigate("/table/history")}
+          onClick={() => {
+            scrollToTop();
+            navigate("/table/history");
+          }}
           className="home-button"
         >
           Historial
@@ -41,13 +46,19 @@ const Home = () => {
         </span>
         <div className="d-flex">
           <Button
-            onClick={() => navigate("/table/up")}
+            onClick={() => {
+              scrollToTop();
+              navigate("/table/up");
+            }}
             className="home-button me-2"
           >
             Menos repetidos
           </Button>
           <Button
-            onClick={() => navigate("/table/down")}
+            onClick={() => {
+              scrollToTop();
+              navigate("/table/down");
+            }}
             className="home-button"
           >
             Mas repetidos
@@ -59,7 +70,10 @@ const Home = () => {
           Ver numers organizados por los que mas tiempo hace que no salen
         </span>
         <Button
-          onClick={() => navigate("/table/oldest")}
+          onClick={() => {
+            scrollToTop();
+            navigate("/table/oldest");
+          }}
           className="home-button"
         >
           Mas viejos
