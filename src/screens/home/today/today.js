@@ -23,6 +23,8 @@ const Today = () => {
     axios
       .get("https://bolitacuba.herokuapp.com/today")
       .then((response) => {
+        console.log(response.data);
+
         setTodayNumbers(response.data);
       })
       .catch((err) => {
@@ -59,6 +61,22 @@ const Today = () => {
     } else return <StartsWithGraph data={dailyNumbersData} />;
   };
 
+  const getMidDayNumber = () => {
+    if (todayNumbers === "loading") return "--";
+    if (!todayNumbers) return "Algo paso, intente mas tarde";
+    if (todayNumbers.day.number === null) return "Disponible 1:30PM";
+
+    return `${todayNumbers.day.number} - ${todayNumbers.day.fb}`;
+  };
+
+  const getNightNumber = () => {
+    if (todayNumbers === "loading") return "--";
+    if (!todayNumbers) return "Algo paso, intente mas tarde";
+    if (todayNumbers.night.number === null) return "Disponible 9:45PM";
+
+    return `${todayNumbers.night.number} - ${todayNumbers.night.fb}`;
+  };
+
   return (
     <div>
       <div className="d-flex align-items-center justify-content-between">
@@ -69,44 +87,18 @@ const Today = () => {
       </div>
       {todayNumbers ? (
         <>
-          <p>
-            Medio dia:
-            {todayNumbers !== "loading" && todayNumbers.day.number === null ? (
-              <span className="ms-1">Disponible a la 1:30PM - 13:30 horas</span>
-            ) : (
-              (
-                <span>
-                  {(todayNumbers !== "loading" && todayNumbers.day.number) ||
-                    "--"}
-                </span>
-              ) -
-              (
-                <span>
-                  {(todayNumbers !== "loading" && todayNumbers.day.fb) || "--"}
-                </span>
-              )
-            )}
-          </p>
-          <p>
-            Noche:{" "}
-            {todayNumbers !== "loading" &&
-            todayNumbers.night.number === null ? (
-              <span className="ms-1">Disponible a la 9:45PM - 21:45 horas</span>
-            ) : (
-              (
-                <span>
-                  {(todayNumbers !== "loading" && todayNumbers.night.number) ||
-                    "--"}
-                </span>
-              ) -
-              (
-                <span>
-                  {(todayNumbers !== "loading" && todayNumbers.night.fb) ||
-                    "--"}
-                </span>
-              )
-            )}
-          </p>
+          <br></br>
+          <div className={styles.numbers_container}>
+            <div className={styles.numbers}>
+              <p>Medio Dia</p>
+              <span>{getMidDayNumber()}</span>
+            </div>
+
+            <div className={styles.numbers}>
+              <p>Noche</p>
+              <span>{getNightNumber()}</span>
+            </div>
+          </div>
         </>
       ) : (
         <div className={styles.error_container}>
