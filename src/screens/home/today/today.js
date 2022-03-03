@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./today.module.css";
 import axios from "axios";
 
-import Timer from "../../../components/timer/timer";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
+import Accordion from "react-bootstrap/Accordion";
+import getTodaysDayWord from "../../../functions/getTodaysDayWord";
+import StartsWithGraph from "./startsWithGraph";
 
 const Today = () => {
   const [todayNumbers, setTodayNumbers] = useState("loading");
+  const [dailyNumbersData, setDailyNumbersData] = useState("loading");
 
   useEffect(() => {
     getData();
+    getDailyNumbersData();
   }, []);
 
   const getData = () => {
@@ -26,6 +30,33 @@ const Today = () => {
         console.log("Failed to get today's numbers (today.js)");
         console.log(err);
       });
+  };
+
+  const getDailyNumbersData = () => {
+    setDailyNumbersData("loading");
+
+    axios
+      .get("http://localhost:9000/today")
+      .then((response) => {
+        setDailyNumbersData(response.data);
+      })
+      .catch((err) => {
+        setDailyNumbersData(null);
+        console.log("Failed to get daily numbers data (today.js)");
+        console.log(err);
+      });
+  };
+
+  const returnStartsWithGraph = () => {
+    if (dailyNumbersData === "loading") {
+      return (
+        <div className="d-flex justify-content-center">
+          <Spinner size="sm" animation="border" role="status" />
+        </div>
+      );
+    } else if (!dailyNumbersData) {
+      return <p>Could not load data for the Graphs</p>;
+    } else return <StartsWithGraph data={dailyNumbersData} />;
   };
 
   return (
@@ -87,6 +118,15 @@ const Today = () => {
           <Button onClick={() => getData()}>Intentar de nuevo</Button>
         </div>
       )}
+      <br></br>
+      <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            Ver numeros que han salido {getTodaysDayWord()} anteriores
+          </Accordion.Header>
+          <Accordion.Body>{returnStartsWithGraph()}</Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </div>
   );
 };

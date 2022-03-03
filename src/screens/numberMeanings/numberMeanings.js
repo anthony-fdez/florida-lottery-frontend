@@ -23,7 +23,7 @@ const NumberMeanings = () => {
           <tbody>
             {getNumbers({ number: "all" }).map((number, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>
                     <span>{index + 1}</span>
                   </td>

@@ -11,6 +11,7 @@ import SortedDown from "./screens/tables/sortedDown";
 import History from "./screens/tables/history";
 import Footer from "./components/footer/footer";
 import NumberMeanings from "./screens/numberMeanings/numberMeanings";
+import Stats from "./screens/stats/stats";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="table/history" element={<History />} />
           <Route path="table/oldest" element={<SortedOldest />} />
           <Route path="number/meanings" element={<NumberMeanings />} />
+          <Route path="stats" element={<Stats />} />
         </Routes>
       </main>
 
