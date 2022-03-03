@@ -23,8 +23,6 @@ const Today = () => {
     axios
       .get("https://bolitacuba.herokuapp.com/today")
       .then((response) => {
-        console.log(response.data);
-
         setTodayNumbers(response.data);
       })
       .catch((err) => {
@@ -57,8 +55,23 @@ const Today = () => {
         </div>
       );
     } else if (!dailyNumbersData) {
-      return <p>Could not load data for the Graphs</p>;
-    } else return <StartsWithGraph data={dailyNumbersData} />;
+      return (
+        <>
+          <p>No se pudo cargar la informacion, intentde nuevo</p>
+          <div className="d-flex justify-content-center mt-2">
+            <Button onClick={() => getDailyNumbersData()}>
+              Intentar de nuevo
+            </Button>
+          </div>
+        </>
+      );
+    } else
+      return (
+        <StartsWithGraph
+          reloadData={getDailyNumbersData}
+          data={dailyNumbersData}
+        />
+      );
   };
 
   const getMidDayNumber = () => {
@@ -114,7 +127,7 @@ const Today = () => {
       <Accordion>
         <Accordion.Item eventKey="0">
           <Accordion.Header>
-            Ver numeros que han salido {getTodaysDayWord()} anteriores
+            Informacion de hoy y {getTodaysDayWord()} anteriores
           </Accordion.Header>
           <Accordion.Body>{returnStartsWithGraph()}</Accordion.Body>
         </Accordion.Item>

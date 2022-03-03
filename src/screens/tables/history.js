@@ -4,7 +4,6 @@ import "./tables.css";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
@@ -19,11 +18,7 @@ const History = () => {
   const [data, setData] = useState("loading");
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [loadedAll, setLoadedAll] = useState(false);
-
   const [loadingGif, setLoadingGif] = useState(null);
-
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [modalNumber, setModalNumber] = useState(null);
 
   useEffect(() => {
     function getRandomInt(max) {
@@ -143,15 +138,7 @@ const History = () => {
                           </Tooltip>
                         }
                       >
-                        <span
-                          onClick={() => {
-                            setIsModalShown(true);
-                            setModalNumber(row.M);
-                          }}
-                          className="link"
-                        >
-                          {row.M}
-                        </span>
+                        <span className="link">{row.M}</span>
                       </OverlayTrigger>
                     </td>
                     <td>
@@ -163,15 +150,7 @@ const History = () => {
                           </Tooltip>
                         }
                       >
-                        <span
-                          onClick={() => {
-                            setIsModalShown(true);
-                            setModalNumber(row.E);
-                          }}
-                          className="link"
-                        >
-                          {row.E}
-                        </span>
+                        <span className="link">{row.E}</span>
                       </OverlayTrigger>
                     </td>
                   </tr>
@@ -220,25 +199,8 @@ const History = () => {
     return <div></div>;
   };
 
-  const modalComponent = () => {
-    return (
-      <Modal show={isModalShown} onHide={() => setIsModalShown(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalNumber}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{getNumbers({ number: modalNumber || "" })}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setIsModalShown(false)}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  };
-
   return (
     <div className={isLoded ? "LOADED" : "NOT-LOADED"}>
-      {modalComponent()}
       {renderTable()}
       <div
         className={

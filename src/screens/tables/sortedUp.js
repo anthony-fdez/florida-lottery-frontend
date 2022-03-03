@@ -4,7 +4,6 @@ import "./tables.css";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
@@ -21,9 +20,6 @@ const SortedUp = () => {
   const [loadedAll, setLoadedAll] = useState(false);
 
   const [loadingGif, setLoadingGif] = useState(null);
-
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [modalNumber, setModalNumber] = useState(null);
 
   useEffect(() => {
     function getRandomInt(max) {
@@ -129,15 +125,7 @@ const SortedUp = () => {
                           </Tooltip>
                         }
                       >
-                        <span
-                          onClick={() => {
-                            setIsModalShown(true);
-                            setModalNumber(row.number);
-                          }}
-                          className="link"
-                        >
-                          {row.number}
-                        </span>
+                        <span className="link">{row.number}</span>
                       </OverlayTrigger>
                     </td>
 
@@ -203,25 +191,8 @@ const SortedUp = () => {
     );
   };
 
-  const modalComponent = () => {
-    return (
-      <Modal show={isModalShown} onHide={() => setIsModalShown(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalNumber}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{getNumbers({ number: modalNumber || "" })}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setIsModalShown(false)}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  };
-
   return (
     <div className={isLoaded ? "LOADED" : "NOT-LOADED"}>
-      {modalComponent()}
       {renderTable()}
       <div
         className={
