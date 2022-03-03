@@ -39,25 +39,42 @@ const Today = () => {
       {todayNumbers ? (
         <>
           <p>
-            Medio dia:{" "}
-            <span>
-              {(todayNumbers !== "loading" && todayNumbers.day.number) || "--"}
-            </span>
-            -
-            <span>
-              {(todayNumbers !== "loading" && todayNumbers.day.fb) || "--"}
-            </span>
+            Medio dia:
+            {todayNumbers !== "loading" && todayNumbers.day.number === null ? (
+              <span className="ms-1">Disponible a la 1:30PM - 13:30 horas</span>
+            ) : (
+              (
+                <span>
+                  {(todayNumbers !== "loading" && todayNumbers.day.number) ||
+                    "--"}
+                </span>
+              ) -
+              (
+                <span>
+                  {(todayNumbers !== "loading" && todayNumbers.day.fb) || "--"}
+                </span>
+              )
+            )}
           </p>
           <p>
             Noche:{" "}
-            <span>
-              {(todayNumbers !== "loading" && todayNumbers.night.number) ||
-                "--"}
-            </span>
-            -
-            <span>
-              {(todayNumbers !== "loading" && todayNumbers.night.fb) || "--"}
-            </span>
+            {todayNumbers !== "loading" &&
+            todayNumbers.night.number === null ? (
+              <span className="ms-1">Disponible a la 9:45PM - 21:45 horas</span>
+            ) : (
+              (
+                <span>
+                  {(todayNumbers !== "loading" && todayNumbers.night.number) ||
+                    "--"}
+                </span>
+              ) -
+              (
+                <span>
+                  {(todayNumbers !== "loading" && todayNumbers.night.fb) ||
+                    "--"}
+                </span>
+              )
+            )}
           </p>
         </>
       ) : (
