@@ -8,6 +8,7 @@ import scrollToTop from "../../functions/scrollToTop";
 import Button from "react-bootstrap/Button";
 import useIsLoaded from "../../functions/customHooks/useIsLoaded";
 import Today from "./today/today";
+import Yesterday from "./yesterday/yesterday";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,11 +21,7 @@ const Home = () => {
         <hr></hr>
         <Today />
         <br></br>
-        <h3>Ayer</h3>
-        <span>Medio dia: </span>
-        <br></br>
-        <span>Noche: </span>
-        <br></br>
+        <Yesterday />
         <br></br>
         <h3>Estadisticas</h3>
         <div className="home-button-container">

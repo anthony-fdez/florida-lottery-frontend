@@ -1,49 +1,75 @@
 import React, { useEffect, useState } from "react";
 import styles from "./today.module.css";
+import axios from "axios";
 
 import Timer from "../../../components/timer/timer";
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 
 const Today = () => {
-  const [timeDay, setTimeDay] = useState(null);
-  const [timeNight, setTimeNight] = useState(null);
+  const [todayNumbers, setTodayNumbers] = useState("loading");
 
   useEffect(() => {
-    const timeNow = new Date().getTime() / 1000;
-    const day = returnTimeDay();
-    const night = returnTimeNight();
+    getData();
   }, []);
 
-  const returnTimeDay = () => {
-    var day = new Date();
-    day.setDate(day.getDate());
-    day.setHours(13);
-    day.setMinutes(30);
-    day.setSeconds(0);
-    day.setMilliseconds(0);
+  const getData = () => {
+    setTodayNumbers("loading");
 
-    return new Date(day).getTime() / 1000;
-  };
-
-  const returnTimeNight = () => {
-    var night = new Date();
-    night.setDate(night.getDate());
-    night.setHours(13);
-    night.setMinutes(30);
-    night.setSeconds(0);
-    night.setMilliseconds(0);
-
-    return new Date(night).getTime() / 1000;
+    axios
+      .get("http://localhost:9000/today")
+      .then((response) => {
+        setTodayNumbers(response.data);
+      })
+      .catch((err) => {
+        setTodayNumbers(null);
+        console.log("Failed to get today's numbers (today.js)");
+        console.log(err);
+      });
   };
 
   return (
     <div>
-      <h3>Numeros de hoy</h3>
-      <p>
-        Medio dia: <span></span>
-      </p>
-      <p>
-        Noche: <span></span>
-      </p>
+      <div className="d-flex align-items-center justify-content-between">
+        <h3>Numeros de hoy</h3>
+        {todayNumbers === "loading" && (
+          <Spinner size="sm" animation="border" role="status" />
+        )}
+      </div>
+      {todayNumbers ? (
+        <>
+          <p>
+            Medio dia:{" "}
+            <span>
+              {(todayNumbers !== "loading" && todayNumbers.day.number) || "--"}
+            </span>
+            -
+            <span>
+              {(todayNumbers !== "loading" && todayNumbers.day.fb) || "--"}
+            </span>
+          </p>
+          <p>
+            Noche:{" "}
+            <span>
+              {(todayNumbers !== "loading" && todayNumbers.night.number) ||
+                "--"}
+            </span>
+            -
+            <span>
+              {(todayNumbers !== "loading" && todayNumbers.night.fb) || "--"}
+            </span>
+          </p>
+        </>
+      ) : (
+        <div className={styles.error_container}>
+          <p>
+            Algo paso no se pudo obtener los numeros de hoy, vuelva a intentarlo
+            mas tarde o apriete el boton de abajo.
+          </p>
+          <br></br>
+          <Button onClick={() => getData()}>Intentar de nuevo</Button>
+        </div>
+      )}
     </div>
   );
 };
