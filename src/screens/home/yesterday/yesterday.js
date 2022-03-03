@@ -16,7 +16,7 @@ const Yesterday = () => {
     setYesterdayNumbers("loading");
 
     axios
-      .get("http://localhost:9000/yesterday")
+      .get("https://bolitacuba.herokuapp.com/yesterday")
       .then((response) => {
         console.log(response);
         setTimeout(() => {

@@ -43,7 +43,7 @@ const SortedUp = () => {
   const getData = () => {
     setData("loading");
     axios
-      .post(`http://localhost:9000/sorted/up`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/up`, {
         start: currentPageIndex,
         end: currentPageIndex + 75,
       })
@@ -61,7 +61,7 @@ const SortedUp = () => {
     setLoadedAll(true);
 
     axios
-      .post(`http://localhost:9000/sorted/up`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/up`, {
         start: currentPageIndex,
         end: currentPageIndex + 25000,
       })

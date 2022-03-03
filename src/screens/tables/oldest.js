@@ -44,7 +44,7 @@ const SortedOldest = () => {
   const getData = () => {
     setData("loading");
     axios
-      .post(`http://localhost:9000/sorted/oldest`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/oldest`, {
         start: currentPageIndex,
         end: currentPageIndex + 75,
       })
@@ -62,7 +62,7 @@ const SortedOldest = () => {
     setLoadedAll(true);
 
     axios
-      .post(`http://localhost:9000/sorted/oldest`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/oldest`, {
         start: currentPageIndex,
         end: currentPageIndex + 50000,
       })

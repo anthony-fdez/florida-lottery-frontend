@@ -44,7 +44,7 @@ const History = () => {
   const getData = () => {
     setData("loading");
     axios
-      .post(`http://localhost:9000/history`, {
+      .post(`https://bolitacuba.herokuapp.com/history`, {
         start: currentPageIndex,
         end: currentPageIndex + 75,
       })
@@ -62,7 +62,7 @@ const History = () => {
     setLoadedAll(true);
 
     axios
-      .post(`http://localhost:9000/history`, {
+      .post(`https://bolitacuba.herokuapp.com/history`, {
         start: currentPageIndex,
         end: currentPageIndex + 25000,
       })

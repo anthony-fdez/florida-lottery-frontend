@@ -21,7 +21,7 @@ const Today = () => {
     setTodayNumbers("loading");
 
     axios
-      .get("http://localhost:9000/today")
+      .get("https://bolitacuba.herokuapp.com/today")
       .then((response) => {
         setTodayNumbers(response.data);
       })
@@ -36,7 +36,7 @@ const Today = () => {
     setDailyNumbersData("loading");
 
     axios
-      .get("http://localhost:9000/today")
+      .get("https://bolitacuba.herokuapp.com/daily/year")
       .then((response) => {
         setDailyNumbersData(response.data);
       })

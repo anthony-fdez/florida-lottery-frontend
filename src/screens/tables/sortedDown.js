@@ -44,7 +44,7 @@ const SortedDown = () => {
   const getData = () => {
     setData("loading");
     axios
-      .post(`http://localhost:9000/sorted/down`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/down`, {
         start: currentPageIndex,
         end: currentPageIndex + 75,
       })
@@ -62,7 +62,7 @@ const SortedDown = () => {
     setLoadedAll(true);
 
     axios
-      .post(`http://localhost:9000/sorted/down`, {
+      .post(`https://bolitacuba.herokuapp.com/sorted/down`, {
         start: currentPageIndex,
         end: currentPageIndex + 25000,
       })
